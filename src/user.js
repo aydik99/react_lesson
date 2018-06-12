@@ -7,7 +7,7 @@ export default class User
 	}
 
 	sayHi(){
-		document.getElementsByClassName('name')[0].innerHTML = "Имя разработчика -"+`${this.firstName} ${this.lastName}`;
+		document.getElementsByClassName('name')[0].innerHTML = 'Имя разработчика -'+`${this.firstName} ${this.lastName}`;
 	}
 
 	displayDate()
