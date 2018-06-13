@@ -26,12 +26,12 @@ export default class Login extends React.Component {
           <ModalBody>
           <Form>
         <FormGroup>
-          <Label for="Login">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="Login" />
+          <Label for='Login'>Email</Label>
+          <Input type='email' name="email" id='exampleEmail' placeholder='Логин' />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Password</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="password" />
+          <Label for='examplePassword'>Password</Label>
+          <Input type='password' name='password' id="examplePassword" placeholder='Пароль' />
         </FormGroup>
         </Form>
           </ModalBody>
