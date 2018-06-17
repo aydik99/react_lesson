@@ -1,10 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import ReactDOM from 'react-dom';
-import Menu from './Menu.jsx';
-import Content from './Content.jsx';
-import Login from './Login.jsx';
+import Menu from 'components/Menu';
+import Content from 'components/Content';
+import Login from 'components/Login';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Button} from 'reactstrap';
+import Header from 'components/Header';
+import Counter from 'components/Counter';
 
 const menuItems = [
     {
@@ -16,18 +18,25 @@ const menuItems = [
         title: 'About'
     }
 ]
-class App extends Component {
-    render() {
-        
 
+
+class App extends Component {
+    handleCounterChange = (counter) => {
+        console.log('new value', counter);
+    }
+
+    handleSubmitForm = (name, email) => {
+        alert('Ваше имя: '+ name+". Ваш email: "+ email);
+    }
+
+    render() {
         return (
-            <div>
-            
-      
+            <Fragment>
             <Menu items={menuItems}/>
+            <Counter onChange={this.handleCounterChange}/>
             <Content />
-            <Login />
-            </div>
+            <Login onSubmitForm={this.handleSubmitForm}/>
+            </Fragment>
         )
     }
 }
