@@ -1,0 +1,14 @@
+.header
+{
+    background-color: blueviolet;
+}
+
+.header--small
+{
+    height: 200px;
+}
+
+.header--big
+{
+    height: 500px;
+}
