@@ -15,24 +15,6 @@ import Comments from "components/Comments";
 import Users from "components/Users";
 import About from "components/About";
 
-const menuItems = [
-  {
-    link: "/",
-    title: "Home"
-  },
-  {
-    link: "About",
-    title: "About"
-  },
-  {
-    link: "Comments",
-    title: "Comments"
-  },
-  {
-    link: "Users",
-    title: "Users"
-  }
-];
 
 class App extends Component {
   render() {
