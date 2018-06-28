@@ -10,6 +10,7 @@ import Content from "components/Content";
 import Header from "components/Header";
 import Comments from "components/Comments";
 import Users from "components/Users";
+import User from 'containers/UserContainer';
 import About from "components/About";
 
 const menuItems = [
@@ -35,14 +36,16 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Menu items={menuItems} />
-
         <Router>
           <Switch>
+          <Fragment>
+          <Menu items={menuItems} />
             <Route exact path="/" component={Content} />
-            <Route path="/Comments" component={Comments} />
-            <Route path="/Users" component={Users} />
-            <Route path="/About" component={About} />
+            <Route path="/comments" component={Comments} />
+            <Route path="/users" component={Users} />
+            <Route exact path="/user/:id" component={User} />
+            <Route path="/about" component={About} />
+            </Fragment>
           </Switch>
         </Router>
       </Fragment>
