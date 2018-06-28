@@ -1,9 +1,11 @@
+
 import './Menu.css';
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 
 class Menu extends Component {
+
   render() {
     const { items, location } = this.props;
     console.log(this.props);
@@ -22,4 +24,6 @@ class Menu extends Component {
   }
 }
 
+
 export default withRouter(Menu);
+
