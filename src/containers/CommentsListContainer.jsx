@@ -1,57 +1,56 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { PureComponent, Fragment } from 'react';
+import { connect } from 'react-redux';
 
-import CommentsList from "components/CommentsList";
+import { loadComments } from 'actions/comments';
+import CommentsList from 'components/CommentsList';
 
-export default class CommentsListContainer extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: false,
-      page: 1,
-      comments: []
-    };
-  }
-
-  load() {
-    const { page, comments } = this.state;
-    if (page === 1) {
-      this.setState({ loading: true });
-    }
-    fetch(
-      `https://jsonplaceholder.typicode.com/comments?limit=10&_page=${page}`
-    )
-      .then(response => response.json())
-      .then(results => {
-        this.setState({
-          loading: false,
-          page: page + 1,
-          comments: comments.concat(results)
-        });
-      })
-      .catch(() => {
-        this.setState({ loading: false });
-      });
-  }
-
+class CommentsListContainer extends PureComponent {
   componentDidMount() {
-    this.load();
+    const { load, comments } = this.props;
+    
+    if(!comments.length) {
+      load();
+    }
   }
 
   handleLoadMore = () => {
-    this.load();
-  };
+    const { load } = this.props;
+
+    load();
+  }
 
   render() {
-    const { comments, loading } = this.state;
+    const { comments, loading } = this.props;
     return (
       <Fragment>
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <CommentsList onLoadMore={this.handleLoadMore} comments={comments} />
-        )}
+        {loading && !comments.length ? <div>Loading...</div> : <CommentsList onLoadMore={this.handleLoadMore} comments={comments} />}
       </Fragment>
     );
   }
 }
+
+function mapStateToProps(state, props) {
+  return {
+    ...props,
+    page: state.comments.page,
+    loading: state.comments.loading,
+    comments: state.comments.entries,
+  }
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    ...props,
+    load: loadComments.bind(null, dispatch),
+  }
+}
+
+function mergeMap(stateProps, dispatchProps, ownProps) {
+  return {
+    ...stateProps,
+    ...ownProps,
+    load: () => dispatchProps.load(stateProps.page),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeMap)(CommentsListContainer);

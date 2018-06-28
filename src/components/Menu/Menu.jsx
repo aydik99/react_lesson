@@ -7,8 +7,8 @@ export default class Menu extends Component {
     return (
       <div className="menu">
         <ul>
-          {items.map(item => (
-            <li>
+          {items.map((item, index) => (
+            <li key={index}>
               <a href={item.link}>{item.title}</a>
             </li>
           ))}
