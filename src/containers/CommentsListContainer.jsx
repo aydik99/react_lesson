@@ -41,7 +41,7 @@ function mapStateToProps(state, props) {
 function mapDispatchToProps(dispatch, props) {
   return {
     ...props,
-    load: loadComments.bind(null, dispatch),
+    load: () => dispatch(loadComments()),
   }
 }
 

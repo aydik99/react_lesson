@@ -41,7 +41,7 @@ function mapStateToProps(state, props) {
 function mapDispatchToProps(dispatch, props) {
   return {
     ...props,
-    load: loadUsers.bind(null, dispatch),
+    load: () => dispatch(loadUsers()),
   }
 }
 
